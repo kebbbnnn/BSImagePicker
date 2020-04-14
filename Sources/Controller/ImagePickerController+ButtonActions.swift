@@ -23,7 +23,7 @@
 import UIKit
 
 extension ImagePickerController {
-    @objc func albumsButtonPressed(_ sender: UIButton) {
+    @objc open func albumsButtonPressed(_ sender: UIButton) {
         albumsViewController.albums = albums
         
         // Setup presentation controller
@@ -34,7 +34,7 @@ extension ImagePickerController {
         present(albumsViewController, animated: true)
     }
 
-    @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
+    @objc open func doneButtonPressed(_ sender: UIBarButtonItem) {
         imagePickerDelegate?.imagePicker(self, didFinishWithAssets: assetStore.assets)
         
         if settings.dismiss.enabled {
@@ -42,7 +42,7 @@ extension ImagePickerController {
         }
     }
 
-    @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
+    @objc open func cancelButtonPressed(_ sender: UIBarButtonItem) {
         imagePickerDelegate?.imagePicker(self, didCancelWithAssets: assetStore.assets)
         
         if settings.dismiss.enabled {

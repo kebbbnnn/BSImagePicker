@@ -53,7 +53,7 @@ extension UIViewController {
         }
     }
 
-    private func authorize(_ authorized: @escaping () -> Void) {
+    public func authorize(_ authorized: @escaping () -> Void) {
         PHPhotoLibrary.requestAuthorization { (status) in
             switch status {
             case .authorized:
