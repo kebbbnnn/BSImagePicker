@@ -69,7 +69,7 @@ open class ImagePickerController: UINavigationController {
         }
     }()
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         if #available(iOS 13.0, *) {
