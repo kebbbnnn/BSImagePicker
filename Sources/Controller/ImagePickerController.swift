@@ -34,7 +34,7 @@ open class ImagePickerController: UINavigationController {
     public var doneButton: UIBarButtonItem = UIBarButtonItem(title: localizedDone, style: .done, target: nil, action: nil)
     public var cancelButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
     public var albumButton: UIButton = UIButton(type: .custom)
-    public var assetStore: AssetStore = AssetStore(assets: [])
+    public lazy var assetStore: AssetStore = AssetStore(assets: [])
 
     // MARK: Internal properties
     var onSelection: ((_ asset: PHAsset) -> Void)?
@@ -42,7 +42,9 @@ open class ImagePickerController: UINavigationController {
     var onCancel: ((_ assets: [PHAsset]) -> Void)?
     var onFinish: ((_ assets: [PHAsset]) -> Void)?
     
-    let assetsViewController: AssetsViewController
+    lazy var assetsViewController: AssetsViewController = {
+        return AssetsViewController(store: assetStore)
+    }()
     let albumsViewController = AlbumsViewController()
     let dropdownTransitionDelegate = DropdownTransitionDelegate()
     let zoomTransitionDelegate = ZoomTransitionDelegate()
@@ -66,15 +68,6 @@ open class ImagePickerController: UINavigationController {
             return assetsFetchResult.count > 0
         }
     }()
-
-    public init() {
-        assetsViewController = AssetsViewController(store: assetStore)
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     public override func viewDidLoad() {
         super.viewDidLoad()

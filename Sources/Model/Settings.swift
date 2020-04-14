@@ -107,6 +107,8 @@ public class Settings {
                 let fetchOptions = PHFetchOptions()
                 return fetchOptions
             }()
+            
+            public lazy var subtype: PHAssetCollectionSubtype = .any
 
             /// Fetch results for asset collections you want to present to the user
             /// Some other fetch results that you might wanna use:
@@ -116,7 +118,7 @@ public class Settings {
             ///                PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumPanoramas, options: options),
             ///                PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumVideos, options: options),
             public lazy var fetchResults: [PHFetchResult<PHAssetCollection>] = [
-                PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: options),
+                PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: subtype, options: options),
             ]
         }
 
