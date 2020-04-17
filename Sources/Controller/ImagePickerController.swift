@@ -129,6 +129,12 @@ open class ImagePickerController: UINavigationController {
             select(album: firstAlbum)
         }
     }
+    
+    public func clearSelections() {
+        if let collectionView = assetsViewController.view as? UICollectionView {
+            collectionView.indexPathsForSelectedItems?.forEach { collectionView.deselectItem(at: $0, animated: true) }
+        }
+    }
 
     func updatedDoneButton() {
         doneButton.title = assetStore.count > 0 ? localizedDone + " (\(assetStore.count))" : localizedDone
